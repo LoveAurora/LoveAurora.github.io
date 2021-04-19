@@ -3430,13 +3430,6 @@ li.categoryBar-list-item {
   -moz-background-size: cover;
   background-size: cover;
 }
-#footer:before {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
-  content: '';
-}
 #footer-wrap {
   position: relative;
   padding: 2rem 1rem;
@@ -3540,7 +3533,12 @@ li.categoryBar-list-item {
   font-size: 30px;
 }
 #page-header.not-home-page {
-  height: 20rem;
+  height: 90vh;
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 @media screen and (max-width: 768px) {
   #page-header.not-home-page {
