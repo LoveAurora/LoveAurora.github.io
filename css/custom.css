@@ -1,0 +1,26 @@
+div#post {
+	background: rgba(255, 255, 255, 0.9);
+}
+div#page {
+	background: rgba(255, 255, 255, 0.9);
+}
+div#archive {
+	background: rgba(255, 255, 255, 0.9);
+}
+div#tag {
+	background: rgba(255, 255, 255, 0.9);
+}
+div#category {
+	background: rgba(255, 255, 255, 0.9);
+}
+#footer {
+	opacity: 0.5;
+}
+.icon {
+	width: 1em;
+	height: 1em;
+	/* width和height定义图标的默认宽度和高度*/
+	vertical-align: -0.15em;
+	fill: currentColor;
+	overflow: hidden;
+}
