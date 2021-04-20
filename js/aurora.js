@@ -18,7 +18,7 @@ var titleTime
 document.addEventListener('visibilitychange', function () {
 	if (document.hidden) {
 		$('[rel="icon"]').attr('href', '/img/favicon.ico')
-		document.title = '(*´∇｀*) Hide On Bush~'
+		document.title = ' Hide On Bush~'
 		clearTimeout(titleTime)
 	} else {
 		$('[rel="icon"]').attr('href', '/img/favicon.ico')

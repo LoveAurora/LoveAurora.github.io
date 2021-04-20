@@ -3533,7 +3533,7 @@ li.categoryBar-list-item {
   font-size: 30px;
 }
 #page-header.not-home-page {
-  height: 90vh;
+  height: 20rem;
   background-position: center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
