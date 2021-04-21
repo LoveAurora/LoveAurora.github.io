@@ -4,19 +4,6 @@
   
     
     <entry>
-      <title>极限</title>
-      <link href="post/bcb3582b.html"/>
-      <url>post/bcb3582b.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>队列的两种实现方式</title>
       <link href="post/c2ed.html"/>
       <url>post/c2ed.html</url>
@@ -36,6 +23,31 @@
             <tag> c++ </tag>
             
             <tag> 数据结构 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>求极限</title>
+      <link href="post/bcb3582b.html"/>
+      <url>post/bcb3582b.html</url>
+      
+        <content type="html"><![CDATA[<h4 id="极限的定义"><a class="header-anchor" href="#极限的定义">¶</a>极限的定义</h4><ol><li><p>如果商的极限等于分子和分母求极限后取商 需要分子和分母极限同时存在 否则极限的四则运算不成立 分母极限是无穷 所以不成立。附图🔗</p><img src='../../images/math/ultra.jpg' width="700px" style="margin:0 auto;"></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> math </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> math </tag>
             
         </tags>
       
