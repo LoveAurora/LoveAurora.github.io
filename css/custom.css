@@ -1,1 +1,103 @@
-body{cursor:url(https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/img/default.cur),default}a,img{cursor:url(https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/img/pointer.cur),default}div#post{background:rgba(255,255,255,.75)}div#page{background:rgba(255,255,255,.75)}div#archive{background:rgba(255,255,255,.8)}div#tag{background:rgba(255,255,255,.8)}div#category{background:rgba(255,255,255,.8)}#footer{opacity:.5}#footer{background:0 0!important}#page-header{background:0 0!important}#page-header.post-bg:before{background-color:transparent!important}[data-theme=dark] #footer::before{background:0 0!important}[data-theme=dark] #page-header::before{background:0 0!important}.icon{width:1em;height:1em;vertical-align:-.15em;fill:currentColor;overflow:hidden}.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body{left:-66px!important}.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover{left:0!important}#page-header,#web_bg{-webkit-animation:imgblur 5s 1 ease-in-out;animation:imgblur 5s 1 ease-in-out}@keyframes imgblur{0%{filter:blur(5px)}100%{filter:blur(0)}}@-webkit-keyframes imgblur{0%{-webkit-filter:blur(5px)}100%{-webkit-filter:blur(0)}}:root{--card-bg:#ffefefd9}[data-theme=dark]{--card-bg:#12121288;--btn-hover-color:#787878;--btn-bg:#1f1f1f;--btn-hover-color:#ff3f3f;--btn-bg:#a153ff;--font-color:rgb(255, 255, 255);--hr-border:rgb(161, 83, 255)}
+/* 鼠标样式 */
+body {
+	cursor: url(https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/img/default.cur),
+		default;
+}
+a,
+img {
+	cursor: url(https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/img/pointer.cur),
+		default;
+}
+
+div#post {
+	background: rgba(255, 255, 255, 0.75);
+}
+div#page {
+	background: rgba(255, 255, 255, 0.75);
+}
+div#archive {
+	background: rgba(255, 255, 255, 0.8);
+}
+div#tag {
+	background: rgba(255, 255, 255, 0.8);
+}
+div#category {
+	background: rgba(255, 255, 255, 0.8);
+}
+#footer {
+	opacity: 0.5;
+}
+
+/* 页脚透明 */
+#footer {
+	background: transparent !important;
+}
+/* 头图透明 */
+#page-header {
+	background: transparent !important;
+}
+/*top-img黑色透明玻璃效果移除，不建议加，除非你执着于完全一图流或者背景图对比色明显 */
+#page-header.post-bg:before {
+	background-color: transparent !important;
+}
+/*夜间模式伪类遮罩层透明*/
+[data-theme='dark'] #footer::before {
+	background: transparent !important;
+}
+[data-theme='dark'] #page-header::before {
+	background: transparent !important;
+}
+.icon {
+	width: 1em;
+	height: 1em;
+	/* width和height定义图标的默认宽度和高度*/
+	vertical-align: -0.15em;
+	fill: currentColor;
+	overflow: hidden;
+}
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+	left: -66px !important;
+}
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+	left: 0px !important;
+}
+/*10s为加载动画的时间，1为加载动画的次数，ease-in-out为动画效果*/
+#page-header,
+#web_bg {
+	-webkit-animation: imgblur 5s 1 ease-in-out;
+	animation: imgblur 5s 1 ease-in-out;
+}
+@keyframes imgblur {
+	0% {
+		filter: blur(5px);
+	}
+	100% {
+		filter: blur(0px);
+	}
+}
+/*适配使用-webkit内核的浏览器 */
+@-webkit-keyframes imgblur {
+	0% {
+		-webkit-filter: blur(5px);
+	}
+	100% {
+		-webkit-filter: blur(0px);
+	}
+}
+:root {
+	/* --card-bg: #fff; */
+	--card-bg: #ffefefd9;
+}
+
+[data-theme='dark'] {
+	/* --card-bg: #121212; */
+	--card-bg: #12121288;
+	--btn-hover-color: #787878;
+	--btn-bg: #1f1f1f;
+	--btn-hover-color: #ff3f3f;
+	--btn-bg: #a153ff;
+	/* --font-color: rgba(255,255,255,0.7); */
+	/* --hr-border: rgba(255,255,255,0.4); */
+	--font-color: rgb(255, 255, 255);
+	--hr-border: rgb(161, 83, 255);
+}
