@@ -1,8 +1,8 @@
 /*添加图片top*/
-var top_up =
-	"<img id='upj' class='upj' style='max-width: 1000%; transform: translate(-70px,-70px);' src='https://cdn.jsdelivr.net/gh/lete114/CDN/Use/up.gif' title='回到顶部' >"
-/*添加到返回顶部按钮下*/
-document.getElementById('go-up').innerHTML += top_up
+// var top_up =
+// 	"<img id='upj' class='upj' style='max-width: 100%; transform: translate(-70px,-70px);' src='https://www.tangyulong.site/wp-content/uploads/2021/05/duck.gif' title='回到顶部' >"
+// /*添加到返回顶部按钮下*/
+// document.getElementById('go-up').innerHTML += top_up
 /* 手机客户端导航栏默认隐藏 */
 // var mobile_sidebar_menus = document.getElementById('mobile-sidebar-menus')
 // var menus_item_child = document.getElementsByClassName('menus_item_child')

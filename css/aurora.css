@@ -12,6 +12,12 @@
 #upj {
 	transform: translate(-70px, -80px) !important;
 } */
+/*新版3.0.0以上添加up酱置顶ico图标上移问题*/
+
+.fas.fa-arrow-up {
+	line-height: 2;
+}
+
 /* 目录隐藏按钮颜色 */
 
 #toggle-sidebar {
@@ -124,10 +130,10 @@ a {
 }
 /* 鼠标图标 */
 
-/* body {
+body {
 	cursor: url(https://cdn.jsdelivr.net/gh/lete114/CDN@1.0/Use/Jkll8I.png),
 		auto;
-} */
+}
 
 /*a标签*/
 
