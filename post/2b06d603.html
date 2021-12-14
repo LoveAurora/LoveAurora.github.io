@@ -1,0 +1,343 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>直接插入排序 | Aurora</title><meta name="keywords" content="CPP,数据结构"><meta name="author" content="Aurora"><meta name="copyright" content="Aurora"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="查看具体代码                               #include &quot;stdio.h&quot;#include &quot;stdlib.h&quot;int insort(int *arr, int length) &amp;#123;    &#x2F;* 自定义函数 insort() int *arr相当于int arr[],都是传的首地址 *&#x2F;    int i, j">
+<meta property="og:type" content="article">
+<meta property="og:title" content="直接插入排序">
+<meta property="og:url" content="https://www.aquatang.top/post/2b06d603.html">
+<meta property="og:site_name" content="Aurora">
+<meta property="og:description" content="查看具体代码                               #include &quot;stdio.h&quot;#include &quot;stdlib.h&quot;int insort(int *arr, int length) &amp;#123;    &#x2F;* 自定义函数 insort() int *arr相当于int arr[],都是传的首地址 *&#x2F;    int i, j">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img11.360buyimg.com/ddimg/jfs/t1/177824/33/1053/304156/60866032Ea034dbfb/665555bcf3a2d38f.jpg">
+<meta property="article:published_time" content="2021-12-01T14:37:22.000Z">
+<meta property="article:modified_time" content="2021-12-14T05:30:20.963Z">
+<meta property="article:author" content="Aurora">
+<meta property="article:tag" content="CPP">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img11.360buyimg.com/ddimg/jfs/t1/177824/33/1053/304156/60866032Ea034dbfb/665555bcf3a2d38f.jpg"><link rel="shortcut icon" href="/medias/favicon.ico"><link rel="canonical" href="https://www.aquatang.top/post/2b06d603"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":50,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-12-14 13:30:20'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" type="text/css" href="/css/aurora.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css"  media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/medias/joker.gif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye"></use></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);" rel="external nofollow noreferrer"><svg class="icon faatada" aria-hidden="true"><use xlink:href="#icon-guanyu"></use></svg><span> 文章</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-qianyueguidang"></use></svg><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-biaoqian1"></use></svg><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-fenlei"></use></svg><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);" rel="external nofollow noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-isometricfenggetubiaosheji-"></use></svg><span> 清单</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-yinle"></use></svg><span> 音乐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/movies/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xingzhuang"></use></svg><span> 电影</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shuoshuo"></use></svg><span> 留言</span></a></li><li><a class="site-page child faa-parent animated-hover" target="_blank" rel="noopener external nofollow noreferrer" href="https://www.tangyulong.site//"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tangguo2"></use></svg><span> 点击穿越</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/navigate/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-daohang"></use></svg><span> 导航</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/artitalk/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-bianjishuoshuo"></use></svg><span> 说说</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/link/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-lianjie2"></use></svg><span> 友链</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu2"></use></svg><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img11.360buyimg.com/ddimg/jfs/t1/177824/33/1053/304156/60866032Ea034dbfb/665555bcf3a2d38f.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Aurora</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye"></use></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);" rel="external nofollow noreferrer"><svg class="icon faatada" aria-hidden="true"><use xlink:href="#icon-guanyu"></use></svg><span> 文章</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-qianyueguidang"></use></svg><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-biaoqian1"></use></svg><span> 标签</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-fenlei"></use></svg><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);" rel="external nofollow noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-isometricfenggetubiaosheji-"></use></svg><span> 清单</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-yinle"></use></svg><span> 音乐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/movies/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xingzhuang"></use></svg><span> 电影</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shuoshuo"></use></svg><span> 留言</span></a></li><li><a class="site-page child faa-parent animated-hover" target="_blank" rel="noopener external nofollow noreferrer" href="https://www.tangyulong.site//"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tangguo2"></use></svg><span> 点击穿越</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/navigate/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-daohang"></use></svg><span> 导航</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/artitalk/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-bianjishuoshuo"></use></svg><span> 说说</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/link/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-lianjie2"></use></svg><span> 友链</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu2"></use></svg><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">直接插入排序</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-12-01T14:37:22.000Z" title="发表于 2021-12-01 22:37:22">2021-12-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-12-14T05:30:20.963Z" title="更新于 2021-12-14 13:30:20">2021-12-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/CPP/">CPP</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">216</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="直接插入排序"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout hide-aside" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><img src="https://www.tangyulong.site/wp-content/uploads/2021/05/joker.gif" alt=""></p>
+<details blue><summary> 查看具体代码 </summary>
+              <div class='content'>
+              <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;stdio.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;stdlib.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">insort</span><span class="params">(<span class="keyword">int</span> *arr, <span class="keyword">int</span> length)</span> </span>&#123;    <span class="comment">/* 自定义函数 insort() int *arr相当于int arr[],都是传的首地址 */</span></span><br><span class="line">    <span class="keyword">int</span> i, j, temp;</span><br><span class="line">    <span class="keyword">for</span> ( i = <span class="number">1</span>; i &lt; length; i++) &#123;<span class="comment">//i从1开始，因为1左边是有序序列</span></span><br><span class="line">        temp = arr[i];</span><br><span class="line">        <span class="keyword">for</span> ( j = i<span class="number">-1</span>; j &gt;= <span class="number">0</span>; j--)<span class="comment">//temp是arr[i],从第i个数开始依次与左边的有序序列比较</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (temp &lt; arr[j])<span class="comment">//temp小于第j个数时</span></span><br><span class="line">                arr[j + <span class="number">1</span>] = arr[j];<span class="comment">//数组后移</span></span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        arr[j + <span class="number">1</span>] = temp;<span class="comment">//退出循环是最坏情况j为-1</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">array</span>[<span class="number">10</span>] = &#123; <span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span> &#125;;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="keyword">sizeof</span>(<span class="built_in">array</span>) / <span class="keyword">sizeof</span>(<span class="built_in">array</span>[<span class="number">0</span>]);<span class="comment">//求数组长度</span></span><br><span class="line">    insort(<span class="built_in">array</span>, len);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;排序后的顺序是：\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">        printf_s(<span class="string">&quot;%d  &quot;</span>, <span class="built_in">array</span>[i]);    <span class="comment">//输出排好序的数组</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+              </div>
+            </details>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined" rel="external nofollow noreferrer">Aurora</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.aquatang.top/post/2b06d603.html">https://www.aquatang.top/post/2b06d603.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.aquatang.top" target="_blank">Aurora</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/CPP/">CPP</a><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></div><div class="post_share"><div class="social-share" data-image="https://img11.360buyimg.com/ddimg/jfs/t1/177824/33/1053/304156/60866032Ea034dbfb/665555bcf3a2d38f.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/medias/reward/wechat.png" target="_blank"><img class="post-qr-code-img" src="/medias/reward/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/medias/reward/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/medias/reward/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/ff8068c0.html"><img class="prev-cover" src="https://img10.360buyimg.com/ddimg/jfs/t1/178992/18/1067/792210/60865f50Edb488a23/76883ceccca5544a.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">快速排序</div></div></a></div><div class="next-post pull-right"><a href="/post/db057e8f.html"><img class="next-cover" src="https://img12.360buyimg.com/ddimg/jfs/t1/190859/24/104/890731/60866035Ebc930955/d0b6b2be1c287003.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">选择排序和冒泡排序</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/a78998a.html" title="代码练习"><img class="cover" src="https://img11.360buyimg.com/ddimg/jfs/t1/161578/24/20971/1106795/60865f5bE9b2cd3f6/ed350f64384ff6e2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-12-04</div><div class="title">代码练习</div></div></a></div><div><a href="/post/1ac49179.html" title="希尔排序"><img class="cover" src="https://img12.360buyimg.com/ddimg/jfs/t1/153139/3/15243/239019/60866038E3b4b9de7/f73a1fcb912b3804.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-12-13</div><div class="title">希尔排序</div></div></a></div><div><a href="/post/ff8068c0.html" title="快速排序"><img class="cover" src="https://img10.360buyimg.com/ddimg/jfs/t1/178992/18/1067/792210/60865f50Edb488a23/76883ceccca5544a.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-12-04</div><div class="title">快速排序</div></div></a></div><div><a href="/post/db057e8f.html" title="选择排序和冒泡排序"><img class="cover" src="https://img12.360buyimg.com/ddimg/jfs/t1/190859/24/104/890731/60866035Ebc930955/d0b6b2be1c287003.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-20</div><div class="title">选择排序和冒泡排序</div></div></a></div><div><a href="/post/2da0528d.html" title="KMP算法"><img class="cover" src="https://img12.360buyimg.com/ddimg/jfs/t1/189042/31/117/557217/6086603eE21d810f9/a463a0bc2cb05375.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-28</div><div class="title">KMP算法</div></div></a></div><div><a href="/post/9c11.html" title="C++结构体与指针"><img class="cover" src="https://img14.360buyimg.com/ddimg/jfs/t1/187677/37/138/3687727/6086605eE51c8ec1c/5900fa1601eb67d0.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-11</div><div class="title">C++结构体与指针</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Aurora</div><div class="framework-info"></div><div class="footer_custom_text">优雅，永不过时<br><a target="_blank" rel="noopener external nofollow noreferrer" href="http://beian.miit.gov.cn/"><img class="icp-icon" src="https://img.alicdn.com/tfs/TB1..50QpXXXXX7XpXXXXXXXXXX-40-40.png"><span>蜀ICP备2021004335号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script async="async">var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})
+setTimeout(function(){preloader.endLoading();}, 2000);</script></div><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: '3o1S2o7omlAVeQ4xFEUTDv4r-MdYXbMMI',
+      appKey: 'NGCSXlvRG1kUK0GiUQoydRDo',
+      placeholder: '記得留下你的暱稱和郵箱....可以快速收到回復',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: {"1":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/1.gif","100":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/100.jpg","001":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/001.png","002":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/002.png","003":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/003.png","004":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/004.png","005":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/005.png","006":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/006.png","007":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/007.png","008":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/008.png","009":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/009.png","010":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/010.png","011":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/011.png","012":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/012.png","013":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/013.png","014":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/014.png","015":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/015.png","016":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/016.png","017":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/017.png","018":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/018.png","019":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/019.png","020":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/020.png","021":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/021.png","022":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/022.png","023":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/023.png","024":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/024.png","025":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/025.png","026":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/026.png","027":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/027.png","028":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/028.png","029":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/029.png","030":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/030.png","031":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/031.png","032":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/032.png","033":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/033.png","034":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/034.png","035":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/035.png","036":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/036.png","037":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/037.png","038":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/038.png","039":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/039.png","040":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/040.jpg","041":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/041.gif","042":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/042.gif","043":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/043.jpg","044":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/044.jpg","045":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/045.jpg","046":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/046.gif","047":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/047.jpg","048":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/048.gif","049":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/049.jpg","050":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/050.jpg","051":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/051.jpg","052":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/052.png","053":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/053.jpg","054":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/054.png","055":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/055.gif","056":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/056.jpg","057":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/057.jpg","058":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/058.jpg","059":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/059.jpg","060":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/060.jpg","061":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/061.jpg","062":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/062.jpg","063":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/063.jpg","064":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/064.jpg","065":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/065.png","066":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/066.png","071":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/071.jpg","072":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/072.jpg","073":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/073.gif","074":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/074.png","075":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/075.png","076":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/076.gif","077":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/077.jpg","078":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/078.gif","079":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/079.jpg","080":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/080.jpg","081":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/081.gif","082":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/082.jpg","083":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/083.jpg","084":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/084.gif","085":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/085.jpg","086":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/086.jpg","087":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/087.jpg","088":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/088.jpg","089":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/089.jpg","090":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/090.jpg","091":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/091.jpg","092":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/092.gif","093":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/093.jpg","094":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/094.jpg","095":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/095.gif","096":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/096.jpg","097":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/097.png","098":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/098.gif","0101":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/101.jpg","0102":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/102.jpg","0105":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/105.jpg","0106":"https://cdn.jsdelivr.net/gh/lete114/CDN/emoji/106.gif"},
+      enableQQ: true,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/lete114/CDN/Valine/Valine-Lete3.2-min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script><script data-pjax src="/js/aurora.js"></script><script src="//at.alicdn.com/t/font_2494715_ql5k05o6mpq.js"></script><script async data-pjax src="/js/randombg.js"></script><script async data-pjax src="/js/floatpanel.js"></script><script defer src="/live2d-widget/autoload.js"></script> - <script defer src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@latest/source/js/issues.min.js"></script><div class="aplayer no-destroy" data-id="970715795" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="true" data-order="random" data-preload="none" data-autoplay="false" muted></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax  src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-clock/clock/images/weather/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='/'|| '/' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script>
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api.vercel.app/api?Aurora";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="Aurora";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><!-- hexo injector body_end end --></body></html>
